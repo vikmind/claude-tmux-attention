@@ -1,0 +1,17 @@
+{
+  "name": "claude-tmux-attention",
+  "owner": {
+    "name": "Viktor Marchenko"
+  },
+  "plugins": [
+    {
+      "name": "tmux-attention",
+      "source": "./",
+      "description": "Marks the tmux window of a Claude Code session that waits for your input",
+      "version": "0.1.0",
+      "author": {
+        "name": "Viktor Marchenko"
+      }
+    }
+  ]
+}

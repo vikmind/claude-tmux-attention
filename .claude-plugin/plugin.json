@@ -1,0 +1,13 @@
+{
+  "name": "tmux-attention",
+  "version": "0.1.0",
+  "description": "Marks the tmux window of a Claude Code session that waits for your input, and clears the mark when you look at the window",
+  "author": {
+    "name": "Viktor Marchenko"
+  },
+  "keywords": [
+    "tmux",
+    "hooks",
+    "notification"
+  ]
+}

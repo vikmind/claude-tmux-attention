@@ -1,13 +1,22 @@
 {
-  "name": "claude-tmux-attention",
+  "name": "claude-setup",
   "owner": {
     "name": "Viktor Marchenko"
   },
   "plugins": [
     {
       "name": "tmux-attention",
-      "source": "./",
+      "source": "./plugins/tmux-attention",
       "description": "Marks the tmux window of a Claude Code session that waits for your input",
+      "version": "0.1.0",
+      "author": {
+        "name": "Viktor Marchenko"
+      }
+    },
+    {
+      "name": "context-statusline",
+      "source": "./plugins/context-statusline",
+      "description": "Status line script that shows the model, the directory, and the context-window fill percentage",
       "version": "0.1.0",
       "author": {
         "name": "Viktor Marchenko"

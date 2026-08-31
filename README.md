@@ -31,18 +31,35 @@ The script uses a window option and not `rename-window`, because
 1. Add this repository as a plugin marketplace, then enable the plugin:
 
    ```
-   /plugin marketplace add <this repo>
+   /plugin marketplace add vikmind/claude-tmux-attention
+   /plugin install tmux-attention@claude-tmux-attention
    ```
 
-2. Add one line to `~/.tmux.conf`:
+2. Add one line to `~/.tmux.conf`. The install puts the whole plugin, the tmux
+   configuration included, under `~/.claude/plugins/cache/`, so no clone is
+   necessary:
 
    ```
-   source-file -q ~/projects/claude-tmux-attention/tmux/claude-attention.conf
+   source-file -q ~/.claude/plugins/cache/claude-tmux-attention/tmux-attention/*/tmux/claude-attention.conf
    ```
 
-   Correct the path for the machine. Then run `tmux source-file ~/.tmux.conf`.
+   The path holds the plugin version. The `*` keeps the line correct after an
+   upgrade. tmux expands the pattern itself, and the file sets every option with
+   `set -g`, so sourcing more than one cached version does no harm.
+
+   Then run `tmux source-file ~/.tmux.conf`. Because `-q` hides a wrong path,
+   check the result:
+
+   ```
+   tmux show -g window-status-format
+   ```
+
+   The value has to start with `#{?@claude_attention,`.
 
 3. Restart the Claude Code sessions. Claude Code reads hooks at startup.
+
+To work from a clone instead, source `tmux/claude-attention.conf` from the clone
+and give Claude Code the clone as a local marketplace.
 
 ## Requirements
 
@@ -54,3 +71,7 @@ The `Notification` hook fires when Claude Code asks for a permission and when a
 session waits for input for about 60 seconds. To also mark the window at the end
 of every turn, add a `Stop` entry to `hooks/hooks.json` that runs the script with
 `set`. This marks the window much more often.
+
+## License
+
+MIT. See `LICENSE`.

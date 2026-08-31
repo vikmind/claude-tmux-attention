@@ -56,6 +56,11 @@ The script uses a window option and not `rename-window`, because
 
    The value has to start with `#{?@claude_attention,`.
 
+   Do not test the `source-file` line by hand in a shell with quotes around the
+   path. tmux expands `~` only for a line inside a config file, so
+   `tmux source-file '~/...'` gives `No such file or directory` (tmux 3.7c), and
+   `-q` makes that failure silent. Test the line from `~/.tmux.conf`, as above.
+
 3. Restart the Claude Code sessions. Claude Code reads hooks at startup.
 
 To work from a clone instead, source `tmux/claude-attention.conf` from the clone

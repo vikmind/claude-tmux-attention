@@ -28,14 +28,19 @@ The script uses a window option and not `rename-window`, because
 
 ## Install
 
-1. Add this repository as a plugin marketplace, then enable the plugin:
+1. Add this repo as marketplace:
 
    ```
    /plugin marketplace add vikmind/claude-setup
+   ```
+
+2. Install `tmux-attention`:
+
+   ```
    /plugin install tmux-attention@claude-setup
    ```
 
-2. Add one line to `~/.tmux.conf`. The install puts the whole plugin, the tmux
+3. Add one line to `~/.tmux.conf`. The install puts the whole plugin, the tmux
    configuration included, under `~/.claude/plugins/cache/`, so no clone is
    necessary:
 
@@ -61,7 +66,7 @@ The script uses a window option and not `rename-window`, because
    `tmux source-file '~/...'` gives `No such file or directory` (tmux 3.7c), and
    `-q` makes that failure silent. Test the line from `~/.tmux.conf`, as above.
 
-3. Restart the Claude Code sessions. Claude Code reads hooks at startup.
+4. Restart the Claude Code sessions. Claude Code reads hooks at startup.
 
 To work from a clone instead, source `tmux/claude-attention.conf` from the clone
 and give Claude Code the clone as a local marketplace.

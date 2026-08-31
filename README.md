@@ -9,9 +9,21 @@ My Claude Code setup, as a plugin marketplace with two plugins.
 
 ## Install
 
+1. Add this repo as marketplace:
+
 ```
 /plugin marketplace add vikmind/claude-setup
+```
+
+2. Install `tmux-attention`:
+
+```
 /plugin install tmux-attention@claude-setup
+```
+
+3. Install `context-statusline`:
+
+```
 /plugin install context-statusline@claude-setup
 ```
 

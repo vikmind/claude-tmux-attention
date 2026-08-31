@@ -28,14 +28,19 @@ Claude Code does not accept a status line from a plugin. The manifest has no
 
 ## Install
 
-1. Install the plugin:
+1. Add this repo as marketplace:
 
    ```
    /plugin marketplace add vikmind/claude-setup
+   ```
+
+2. Install `context-statusline`:
+
+   ```
    /plugin install context-statusline@claude-setup
    ```
 
-2. Add this block to `~/.claude/settings.json`:
+3. Add this block to `~/.claude/settings.json`:
 
    ```json
    "statusLine": {
@@ -52,7 +57,7 @@ Claude Code does not accept a status line from a plugin. The manifest has no
    `python3` would run the first one and read the rest as arguments. `ls -dt`
    sorts by install time, so `head -1` always names the newest install.
 
-3. Check the result:
+4. Check the result:
 
    ```
    echo '{"model":{"display_name":"Opus 5"},"workspace":{"current_dir":"/tmp"}}' \

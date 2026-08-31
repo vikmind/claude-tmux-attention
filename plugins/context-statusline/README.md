@@ -9,9 +9,15 @@ Opus 5 (1M context) | bulk-action-model | 12% ctx (118k/1000k)
 
 The percentage is green below 60, yellow from 60, and red from 85.
 
-The script reads the session JSON on standard input, then derives the context
-usage from the last main-chain assistant turn in the transcript. It assumes a
-1M window for `[1m]` models and for Fable 5, and 200k for every other model.
+The script reads the session JSON on standard input and takes both numbers
+from the `context_window` field, so the percentage matches what `/context`
+shows. Claude Code sizes the window there, which is the only reliable way to
+get it: a 1M window can come from an entitlement rather than from the `[1m]`
+model id, `CLAUDE_CODE_MAX_CONTEXT_TOKENS` overrides it, and auto-compact
+imposes a 200k window on a 1M model.
+
+The context part is absent when Claude Code sends no `context_window`, so the
+line then shows the model and the directory alone.
 
 ## Why this plugin needs a manual step
 
@@ -54,9 +60,10 @@ Claude Code does not accept a status line from a plugin. The manifest has no
    ```
 
    This prints the model and the directory. The context part needs a
-   `transcript_path` in the input, so it is absent here. A new session shows the
+   `context_window` in the input, so it is absent here. A live session shows the
    complete line.
 
 ## Requirements
 
-python3.
+python3, and a Claude Code version that sends `context_window` in the status
+line input.

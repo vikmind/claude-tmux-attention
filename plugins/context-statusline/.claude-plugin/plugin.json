@@ -1,6 +1,6 @@
 {
   "name": "context-statusline",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Status line script that shows the model, the directory, and the context-window fill percentage. Claude Code cannot register a status line from a plugin, so this plugin only delivers the script; ~/.claude/settings.json points at it.",
   "author": {
     "name": "Viktor Marchenko"

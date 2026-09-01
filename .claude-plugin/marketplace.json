@@ -17,7 +17,7 @@
       "name": "context-statusline",
       "source": "./plugins/context-statusline",
       "description": "Status line script that shows the model, the directory, and the context-window fill percentage",
-      "version": "0.2.0",
+      "version": "0.2.1",
       "author": {
         "name": "Viktor Marchenko"
       }

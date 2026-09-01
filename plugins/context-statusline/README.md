@@ -16,8 +16,10 @@ get it: a 1M window can come from an entitlement rather than from the `[1m]`
 model id, `CLAUDE_CODE_MAX_CONTEXT_TOKENS` overrides it, and auto-compact
 imposes a 200k window on a 1M model.
 
-The context part is absent when Claude Code sends no `context_window`, so the
-line then shows the model and the directory alone.
+The context part is absent when Claude Code sends no `context_window`, and also
+at the start of a session, because the number counts the tokens of the last
+completed request and is therefore 0 until the first request lands. The line
+then shows the model and the directory alone.
 
 ## Why this plugin needs a manual step
 

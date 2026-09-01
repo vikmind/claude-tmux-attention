@@ -22,7 +22,9 @@ context_window = data.get("context_window") or {}
 used = context_window.get("total_input_tokens")
 window = context_window.get("context_window_size")
 
-if isinstance(used, int) and isinstance(window, int) and window > 0:
+# Claude Code reports the tokens of the last completed request, so this is 0
+# until the first request lands. Show nothing rather than a false 0%.
+if isinstance(used, int) and used > 0 and isinstance(window, int) and window > 0:
     pct = min(100, used / window * 100)
     if pct >= 85:
         color = "\033[31m"   # red

@@ -5,7 +5,7 @@ My Claude Code setup, as a plugin marketplace with two plugins.
 | Plugin | What it does | Manual step |
 |---|---|---|
 | [`tmux-attention`](plugins/tmux-attention) | Marks the tmux window of a session that waits for your input | one `source-file` line in `~/.tmux.conf` |
-| [`context-statusline`](plugins/context-statusline) | Status line with model, directory, and context-window fill | one `statusLine` block in `~/.claude/settings.json` |
+| [`context-statusline`](plugins/context-statusline) | Status line with model, effort, context-window fill, and cache state | one `statusLine` block in `~/.claude/settings.json` |
 
 ## Install
 

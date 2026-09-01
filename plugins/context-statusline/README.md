@@ -1,13 +1,23 @@
 # context-statusline
 
-Status line that shows the model, the current directory, and how full the
-context window is:
+Status line that shows the model, the reasoning effort, how full the context
+window is, and the state of the prompt cache:
 
 ```
-Opus 5 (1M context) | bulk-action-model | 12% ctx (118k/1000k)
+Opus 5 (1M context) | high effort | 12% ctx (118k/1000k) | cache 42m
 ```
 
 The percentage is green below 60, yellow from 60, and red from 85.
+
+The effort part comes from the `effort` field and is absent for a model that
+has no reasoning effort. It is dim for `low`, `medium`, and `high`, and magenta
+for `xhigh` and `max`, because those two cost noticeably more.
+
+The cache part comes from the `prompt_cache` field. A warm cache is green and
+names the time left before it expires. A cold cache is yellow and says `cache
+cold`, which means the next turn pays to write the prompt again. The part is
+absent before the first request of a session, and also when the API reports no
+caching at all.
 
 The script reads the session JSON on standard input and takes both numbers
 from the `context_window` field, so the percentage matches what `/context`
@@ -18,8 +28,8 @@ imposes a 200k window on a 1M model.
 
 The context part is absent when Claude Code sends no `context_window`, and also
 at the start of a session, because the number counts the tokens of the last
-completed request and is therefore 0 until the first request lands. The line
-then shows the model and the directory alone.
+completed request and is therefore 0 until the first request lands. Every part
+except the model is optional, so a fresh session shows the model alone.
 
 ## Why this plugin needs a manual step
 
@@ -62,15 +72,15 @@ Claude Code does not accept a status line from a plugin. The manifest has no
 4. Check the result:
 
    ```
-   echo '{"model":{"display_name":"Opus 5"},"workspace":{"current_dir":"/tmp"}}' \
+   echo '{"model":{"display_name":"Opus 5"}}' \
      | python3 "$(ls -dt ~/.claude/plugins/cache/claude-setup/context-statusline/*/statusline.py | head -1)"
    ```
 
-   This prints the model and the directory. The context part needs a
-   `context_window` in the input, so it is absent here. A live session shows the
-   complete line.
+   This prints the model alone. The other parts need `effort`,
+   `context_window`, and `prompt_cache` in the input, so they are absent here. A
+   live session shows the complete line.
 
 ## Requirements
 
-python3, and a Claude Code version that sends `context_window` in the status
-line input.
+python3, and a Claude Code version that sends `context_window`, `effort`, and
+`prompt_cache` in the status line input.
